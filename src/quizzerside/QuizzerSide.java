@@ -12,6 +12,8 @@ import java.lang.*;
 import java.net.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 public class QuizzerSide extends JFrame {
     public static Console console = new Console();
@@ -44,12 +46,12 @@ public class QuizzerSide extends JFrame {
         inputField.getActionMap().put("enterKeyPressed", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                console.printToConsole("[User] " + inputField.getText());
+                console.printToConsole(inputField.getText());
 
                 try {
-                    InetAddress localhost = InetAddress.getLocalHost();
+                    InetAddress address = InetAddress.getLocalHost();
 
-                    OSCPortOut sender = new OSCPortOut(localhost, OSCPortOut.defaultSCOSCPort());
+                    OSCPortOut sender = new OSCPortOut(address, OSCPortOut.defaultSCOSCPort());
 
                     String userInput = inputField.getText();
                     Object input = userInput;
